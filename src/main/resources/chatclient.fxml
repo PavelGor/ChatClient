@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -50,10 +51,10 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="122.0" prefWidth="410.0">
                <children>
-                  <Button id="send" fx:id="sendBtn" disable="true" layoutX="342.0" layoutY="76.0" mnemonicParsing="false" onAction="#onSendClick" text="Send" />
-                  <TextField id="message" fx:id="messageText" disable="true" layoutX="14.0" layoutY="52.0" prefHeight="73.0" prefWidth="314.0" />
+                  <Button id="send" fx:id="sendBtn" disable="true" layoutX="342.0" layoutY="76.0" mnemonicParsing="false" onAction="#onSendButtonClick" text="Send" />
                   <TextField id="nickName" fx:id="nickNameText" disable="true" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="314.0" promptText="Enter your NikName here and press Register" />
                   <Button id="register" fx:id="registerButton" disable="true" layoutX="331.0" layoutY="14.0" mnemonicParsing="false" onAction="#onRegisterClick" text="Register" />
+                  <TextArea fx:id="messageText" disable="true" layoutX="14.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#onEnterClick" prefHeight="93.0" prefWidth="314.0" />
                </children>
             </AnchorPane>
         </items>

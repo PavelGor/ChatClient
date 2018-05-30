@@ -26,10 +26,14 @@ public class ServerHandler implements Runnable {
         }
     }
 
-    public void send(String text) throws IOException {
-        bufferedWriter.write(text);
-        bufferedWriter.newLine();
-        bufferedWriter.flush();
+    public void send(String text) {
+        try {
+            bufferedWriter.write(text);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setIpAddress(String ipAddress) {

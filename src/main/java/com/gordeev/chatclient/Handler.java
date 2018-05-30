@@ -3,8 +3,6 @@ package com.gordeev.chatclient;
 import com.gordeev.chatclient.controller.Controller;
 import com.gordeev.chatclient.server.ServerHandler;
 
-import java.io.IOException;
-
 public class Handler {
     private final static Handler INSTANCE = new Handler();
 
@@ -36,7 +34,7 @@ public class Handler {
         controller.updateChat(message);
     }
 
-    public void sendMessage(String message) throws IOException {
+    public void sendMessage(String message) {
         serverHandler.send(message);
     }
 }

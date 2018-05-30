@@ -3,8 +3,8 @@ package com.gordeev.chatclient.controller;
 import com.gordeev.chatclient.Handler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 
-import java.io.*;
 import java.util.Optional;
 
 public class Controller {
@@ -21,11 +21,11 @@ public class Controller {
     private Button sendBtn;
 
     @FXML
-    private TextField messageText;
+    private TextArea messageText;
 
     private Handler handler = Handler.getInstance();
 
-    public void onRegisterClick() throws IOException {
+    public void onRegisterClick() {
         handler.sendMessage(nickNameText.getText());
 
         nickNameText.setDisable(true);
@@ -39,9 +39,15 @@ public class Controller {
         chatText.setText(string + "\n" + message);
     }
 
-    public void onSendClick() throws IOException {
-        handler.sendMessage(messageText.getText());
+    public void onSendButtonClick() {
+        String text = messageText.getText();
+        onSendEvent(text);
+    }
+
+    private void onSendEvent(String text) {
         messageText.setText("");
+        messageText.requestFocus();
+        handler.sendMessage(text);
     }
 
     public void onClose() {
@@ -55,9 +61,7 @@ public class Controller {
         dialog.setContentText("Please enter server IP-address:");
 
         Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            handler.connect(result.get());
-        }
+        result.ifPresent(s -> handler.connect(s));
         nickNameText.setDisable(false);
         registerButton.setDisable(false);
     }
@@ -69,8 +73,15 @@ public class Controller {
         alert.setContentText("developed by Pavel Gordeev");
 
         alert.showAndWait();
-
     }
 
-
+    public void onEnterClick() {
+        messageText.setOnKeyReleased(event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                String text = messageText.getText();
+                text = text.substring(0, text.length() - 1);
+                onSendEvent(text);
+            }
+        });
+    }
 }
