@@ -26,7 +26,7 @@
         <items>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextArea id="chat" fx:id="chatText" layoutY="37.0" prefHeight="436.0" prefWidth="410.0" AnchorPane.bottomAnchor="-26.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0" />
+                  <TextArea id="chat" fx:id="chatText" layoutY="37.0" prefHeight="436.0" prefWidth="410.0" text="Go to Settings and set IP of server" AnchorPane.bottomAnchor="-26.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0" />
                   <MenuBar layoutX="2.0" layoutY="7.0" prefHeight="29.0" prefWidth="402.0">
                     <menus>
                       <Menu mnemonicParsing="false" text="File">
@@ -52,8 +52,8 @@
                <children>
                   <Button id="send" fx:id="sendBtn" disable="true" layoutX="342.0" layoutY="76.0" mnemonicParsing="false" onAction="#onSendClick" text="Send" />
                   <TextField id="message" fx:id="messageText" disable="true" layoutX="14.0" layoutY="52.0" prefHeight="73.0" prefWidth="314.0" />
-                  <TextField id="nickName" fx:id="nickNameText" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="314.0" promptText="Enter your NikName here and press Register" />
-                  <Button id="register" fx:id="registerButton" layoutX="331.0" layoutY="14.0" mnemonicParsing="false" onAction="#onRegisterClick" text="Register" />
+                  <TextField id="nickName" fx:id="nickNameText" disable="true" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="314.0" promptText="Enter your NikName here and press Register" />
+                  <Button id="register" fx:id="registerButton" disable="true" layoutX="331.0" layoutY="14.0" mnemonicParsing="false" onAction="#onRegisterClick" text="Register" />
                </children>
             </AnchorPane>
         </items>

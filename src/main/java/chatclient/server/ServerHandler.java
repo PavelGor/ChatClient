@@ -5,21 +5,21 @@ import chatclient.Handler;
 import java.io.*;
 import java.net.Socket;
 
-public class Server implements Runnable {
+public class ServerHandler implements Runnable {
 
     private BufferedWriter bufferedWriter;
     private BufferedReader bufferedReader;
-    private String ipAddress = "localhost";
+    private String ipAddress;
 
     private Handler handler = Handler.getInstance();
 
     public void connect() {
         try {
-            Socket socket = new Socket(ipAddress, 3000); // can we autoupdate in intranet?
+            Socket socket = new Socket(ipAddress, 3000);
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 
-            handler.updateChat("Connected to server: " + ipAddress);
+            handler.updateChat("Connected to server: " + ipAddress + ". Now register your NickName");
         } catch (IOException e) {
             handler.updateChat("Cannot connect to server: " + ipAddress);
             e.printStackTrace();

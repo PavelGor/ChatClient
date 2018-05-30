@@ -1,7 +1,7 @@
 package chatclient;
 
 import chatclient.controller.Controller;
-import chatclient.server.Server;
+import chatclient.server.ServerHandler;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
@@ -17,20 +17,20 @@ public class Handler {
     }
 
     private Controller controller;
-    private Server server;
+    private ServerHandler serverHandler;
 
-    public void handle(FXMLLoader loader)  {
-        controller = loader.getController();
+    public void connect(String ip) {
+        serverHandler = new ServerHandler();
+        Thread thread = new Thread(serverHandler);
 
-        server = new Server();
-
-        //this.wait();
-        Thread thread = new Thread(server);
-
-        //server.setIpAddress(controller.getIpAddress());
-        server.connect();
+        serverHandler.setIpAddress(ip);
+        serverHandler.connect();
 
         thread.start();
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
     public void updateChat(String message) {
@@ -38,6 +38,6 @@ public class Handler {
     }
 
     public void sendMessage(String message) throws IOException {
-        server.send(message);
+        serverHandler.send(message);
     }
 }

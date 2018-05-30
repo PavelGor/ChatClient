@@ -1,6 +1,7 @@
 package chatclient.controller;
 
 import chatclient.Handler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -24,7 +25,6 @@ public class Controller {
     private TextField messageText;
 
     private Handler handler = Handler.getInstance();
-    private String ipAddress;
 
     public void onRegisterClick() throws IOException {
         handler.sendMessage(nickNameText.getText());
@@ -52,14 +52,15 @@ public class Controller {
     public void onSetIPServer() {
         TextInputDialog dialog = new TextInputDialog("127.0.0.1");
         dialog.setTitle("Settings");
-        dialog.setHeaderText("Enter IP-address of your Server with dots");
+        dialog.setHeaderText("Enter IP-address of your ServerHandler with dots");
         dialog.setContentText("Please enter server IP-address:");
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            setIpAddress(result.get());
-            System.out.println("You set server IP: " + result.get());
+            handler.connect(result.get());
         }
+        nickNameText.setDisable(false);
+        registerButton.setDisable(false);
     }
 
     public void onAbout() {
@@ -69,14 +70,8 @@ public class Controller {
         alert.setContentText("developed by Pavel Gordeev");
 
         alert.showAndWait();
+
     }
 
-    public String getIpAddress() {
-        return ipAddress;
-    }
 
-    private void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-        //handler.notifyAll();
-    }
 }
