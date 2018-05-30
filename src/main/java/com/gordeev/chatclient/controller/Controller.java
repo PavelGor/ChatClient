@@ -1,7 +1,6 @@
-package chatclient.controller;
+package com.gordeev.chatclient.controller;
 
-import chatclient.Handler;
-import javafx.event.ActionEvent;
+import com.gordeev.chatclient.Handler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 

@@ -1,4 +1,4 @@
-package chatclient;
+package com.gordeev.chatclient;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../chatclient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../chatclient.fxml"));
         Parent root = loader.load();
 
         Handler handler = Handler.getInstance();

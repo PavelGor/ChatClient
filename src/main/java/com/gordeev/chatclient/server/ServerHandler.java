@@ -1,6 +1,6 @@
-package chatclient.server;
+package com.gordeev.chatclient.server;
 
-import chatclient.Handler;
+import com.gordeev.chatclient.Handler;
 
 import java.io.*;
 import java.net.Socket;

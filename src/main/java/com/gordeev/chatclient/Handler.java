@@ -1,8 +1,7 @@
-package chatclient;
+package com.gordeev.chatclient;
 
-import chatclient.controller.Controller;
-import chatclient.server.ServerHandler;
-import javafx.fxml.FXMLLoader;
+import com.gordeev.chatclient.controller.Controller;
+import com.gordeev.chatclient.server.ServerHandler;
 
 import java.io.IOException;
 
