@@ -1,9 +1,12 @@
 package com.gordeev.chatclient.controller;
 
 import com.gordeev.chatclient.Handler;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import org.controlsfx.control.Notifications;
 
 import java.util.Optional;
 
@@ -35,8 +38,20 @@ public class Controller {
     }
 
     public void updateChat(String message) {
-        String string = chatText.getText();
-        chatText.setText(string + "\n" + message);
+        chatText.appendText(message + System.lineSeparator());
+        showNotification(message);
+    }
+
+    private void showNotification(String message){
+        Platform.runLater(
+                () -> Notifications.create()
+                        .title("My Chat app")
+                        .text(message)
+                        .darkStyle()
+                        .position(Pos.TOP_RIGHT)
+                        .show()
+        );
+
     }
 
     public void onSendButtonClick() {
