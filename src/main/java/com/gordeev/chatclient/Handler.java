@@ -37,4 +37,8 @@ public class Handler {
     public void sendMessage(String message) {
         serverHandler.send(message);
     }
+
+    public void SendNotification(String message) {
+        controller.showNotification(message);
+    }
 }

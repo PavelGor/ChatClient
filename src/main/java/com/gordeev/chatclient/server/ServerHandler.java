@@ -19,9 +19,9 @@ public class ServerHandler implements Runnable {
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 
-            handler.updateChat("Connected to server: " + ipAddress + ". Now register your NickName");
+            handler.SendNotification("Connected to server: " + ipAddress + ". Now register your NickName");
         } catch (IOException e) {
-            handler.updateChat("Cannot connect to server: " + ipAddress);
+            handler.SendNotification("Cannot connect to server: " + ipAddress);
             e.printStackTrace();
         }
     }

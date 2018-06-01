@@ -10,14 +10,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../chatclient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../templates/mychatclient.fxml"));
         Parent root = loader.load();
 
         Handler handler = Handler.getInstance();
         handler.setController(loader.getController());
 
         primaryStage.setTitle("Chat");
-        primaryStage.setScene(new Scene(root, 420, 570));
+        Scene scene = new Scene(root, 470, 494);
+        //scene.getStylesheets().add("../../../assets/css/styles.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
 
 

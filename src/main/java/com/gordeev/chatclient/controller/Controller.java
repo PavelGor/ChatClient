@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import org.controlsfx.control.Notifications;
 
@@ -12,29 +13,35 @@ import java.util.Optional;
 
 public class Controller {
     @FXML
-    private TextField nickNameText;
-
-    @FXML
     private TextArea chatText;
 
     @FXML
-    private Button registerButton;
+    private ImageView sendBtn;
 
     @FXML
-    private Button sendBtn;
+    private ImageView sendFile;
 
     @FXML
-    private TextArea messageText;
+    private ImageView registerButton;
+
+    @FXML
+    private TextField messageText;
 
     private Handler handler = Handler.getInstance();
 
     public void onRegisterClick() {
-        handler.sendMessage(nickNameText.getText());
+        TextInputDialog dialog = new TextInputDialog("NickName");
+        dialog.setTitle("Register user");
+        dialog.setContentText("Please enter your NickName:");
 
-        nickNameText.setDisable(true);
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(s -> handler.sendMessage(s));
+
         registerButton.setDisable(true);
         sendBtn.setDisable(false);
+        sendFile.setDisable(false);
         messageText.setDisable(false);
+        chatText.setText("");
     }
 
     public void updateChat(String message) {
@@ -42,7 +49,7 @@ public class Controller {
         showNotification(message);
     }
 
-    private void showNotification(String message){
+    public void showNotification(String message){
         Platform.runLater(
                 () -> Notifications.create()
                         .title("My Chat app")
@@ -51,7 +58,6 @@ public class Controller {
                         .position(Pos.TOP_RIGHT)
                         .show()
         );
-
     }
 
     public void onSendButtonClick() {
@@ -77,8 +83,8 @@ public class Controller {
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(s -> handler.connect(s));
-        nickNameText.setDisable(false);
         registerButton.setDisable(false);
+        chatText.setText("\n\n\n\n" + " <-- Enter your NickName");
     }
 
     public void onAbout() {
@@ -98,5 +104,9 @@ public class Controller {
                 onSendEvent(text);
             }
         });
+    }
+
+    public void onSendFile(){
+
     }
 }
